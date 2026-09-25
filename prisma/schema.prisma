@@ -11,3 +11,37 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Program {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  advisers Adviser?
+  students Student[]
+}
+
+model Adviser {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  program   Program @relation(fields: [programId], references: [id])
+  programId Int     @unique
+}
+
+model Student {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  program   Program @relation(fields: [programId], references: [id])
+  programId Int
+
+  remarks Remark[]
+}
+
+model Remark {
+  id      Int    @id @default(autoincrement())
+  content String
+
+  student   Student @relation(fields: [studentId], references: [id])
+  studentId Int
+}
