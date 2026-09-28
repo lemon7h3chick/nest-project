@@ -27,9 +27,25 @@
 
 ## Project setup
 
+After cloning the repo, inside the nest-project:
+
 ```bash
 $ npm install
 ```
+
+Setup your database in `.env`:
+
+```
+DATABASE_URL="postgresql://USERNAME:PASSWORD@localhost:5432/DATABASE_NAME"
+```
+
+Then migrate your database and seed data:
+
+```bash
+npx prisma migrate dev
+npx prisma db seed
+```
+
 
 ## Compile and run the project
 
